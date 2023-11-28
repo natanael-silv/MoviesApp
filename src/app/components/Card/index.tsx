@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Rate from "../Rate";
-import fallbackImage from "../../../../public/Images/poster_fallback_img.png"
+import fallbackImage from "../../../../public/Images/poster_fallback_img.png";
 type CardProps = {
   cardType?: string;
   name?: string;
@@ -19,21 +19,20 @@ const Card = ({
   cardType,
   name,
 }: CardProps) => {
-  
-    const [error, setError] = useState(null)
-  
-    useEffect(() => {
-      setError(null)
-    }, [])
-  
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setError(false);
+  }, []);
+
   return (
     <div>
       <div className="relative text-sm  md:h-[268px] md:w-[178px] w-[128px] h-[180px] bg-[#232323] rounded-lg my-0 mx-auto overflow-hidden">
         <Image
           fill
           sizes="(min-width: 768px) 178px, (max-width: 767px) 128px"
-          src={error? fallbackImage : backdrop_path}
-          onError={setError}
+          src={error ? fallbackImage : backdrop_path}
+          onError={() => setError(true)}
           alt=""
         />
 
