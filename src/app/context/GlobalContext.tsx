@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { ReactNode, createContext, useState, useContext } from "react";
 import { getTrailers } from "../services";
-import { Film } from "../interfaces";
+import { Movie } from "../interfaces";
 
 interface GlobalContextProps {
   searchQuery: string;
@@ -13,15 +13,17 @@ interface GlobalContextProps {
   handleSubmit: (e: React.MouseEvent) => void;
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  playTrailer: (movie?: Movie) => void;
 }
 const defaultContextValues: GlobalContextProps = {
-  searchQuery: '',
+  searchQuery: "",
   setSearchQuery: () => {},
-  trailerSrc: '',
+  trailerSrc: "",
   setTrailerSrc: () => {},
   handleSubmit: () => {},
   isOpen: false,
   setOpen: () => {},
+  playTrailer: () => {},
 };
 interface GlobalContextProviderProps {
   children: ReactNode;
@@ -36,9 +38,9 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
   const [trailerSrc, setTrailerSrc] = useState<string>("");
   const [isOpen, setOpen] = useState(false);
 
-  const handleSubmit = (e: React.MouseEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-   
+
     if (searchQuery === "") {
       return;
     }
@@ -46,8 +48,8 @@ export const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
     router.push(`/search/${searchQuery}`);
   };
 
-  const playTrailer = async (film: Film) => {
-    const trailers = await getTrailers(film.id);
+  const playTrailer = async (movie?: Movie) => {
+    const trailers = await getTrailers(movie?.id);
     setTrailerSrc(trailers[0].key);
     setOpen(true);
   };

@@ -7,7 +7,7 @@ const options = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
   },
 };
-export const getTrailers = async (id: number) => {
+export const getTrailers = async (id?: number) => {
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
