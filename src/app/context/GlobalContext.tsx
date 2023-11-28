@@ -10,7 +10,7 @@ interface GlobalContextProps {
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   trailerSrc: string;
   setTrailerSrc: React.Dispatch<React.SetStateAction<string>>;
-  handleSubmit: (e: React.MouseEvent) => void;
+  handleSubmit: (e: React.FormEvent) => void;
   isOpen: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   playTrailer: (movie?: Movie) => void;
