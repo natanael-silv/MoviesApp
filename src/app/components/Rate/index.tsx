@@ -9,7 +9,7 @@ export default function Rate({ vote }: RateProps) {
     <>
       <span className="inline-flex items-baseline ">
         <Image
-          src="/Svg/star.svg"
+          src="/Svg/stars.svg"
           alt=""
           width={15}
           height={15}
